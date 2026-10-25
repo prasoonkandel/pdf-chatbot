@@ -25,21 +25,21 @@ def chunk(content: str, max_size: int = 500, overlap: int = 50):
                 if "\n" in current_part:
                     before, newline, after = current_part.rpartition("\n")
                     chunk_part = before
-                    i += len(before) + overlap
+                    i += len(before) - len(overlap_part)
                     overlap_part = before[-overlap:]
                 if ". " in current_part:
                     before, newline, after = current_part.rpartition(". ")
                     chunk_part = before
-                    i += len(before) + overlap
+                    i += len(before) - len(overlap_part)
                     overlap_part = before[-overlap:]
                 elif " " in current_part:
                     before, word_break, after = current_part.rpartition(" ")
                     chunk_part = before
-                    i += len(before) + overlap
+                    i += len(before) - len(overlap_part)
                     overlap_part = before[-overlap:]
                 else:
                     chunk_part = current_part
-                    i += len(current_part) + overlap
+                    i += len(current_part) - len(overlap_part)
                     overlap_part = current_part[-overlap:]
 
                 chunks.append(chunk_part)
@@ -55,6 +55,8 @@ def chunk(content: str, max_size: int = 500, overlap: int = 50):
             temp_part += overlap_part
 
         temp_part += f"{piece}"
+
     else:
         chunks.append(temp_part)
+
     return chunks
