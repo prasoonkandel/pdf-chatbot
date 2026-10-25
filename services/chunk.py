@@ -27,7 +27,7 @@ def chunk(content: str, max_size: int = 500, overlap: int = 50):
                     chunk_part = before
                     i += len(before) - len(overlap_part)
                     overlap_part = before[-overlap:]
-                if ". " in current_part:
+                elif ". " in current_part:
                     before, newline, after = current_part.rpartition(". ")
                     chunk_part = before
                     i += len(before) - len(overlap_part)
