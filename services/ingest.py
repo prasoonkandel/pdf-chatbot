@@ -1,5 +1,3 @@
-from enum import EnumMeta
-
 import pdfplumber
 
 file = "test_data/table_data.pdf"
