@@ -5,7 +5,7 @@ def chunk(content: str, max_size: int = 500, overlap: int = 50):
 
     for piece in content.split("\n\n"):
         piece = piece + "\n\n"
-        if len(piece) > max_size:
+        if len(temp_part) + len(overlap_part) + len(piece) > max_size:
             chunks.append(temp_part)
             overlap_part = temp_part[-overlap:]
             temp_part = ""
